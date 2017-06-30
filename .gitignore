@@ -1,0 +1,15 @@
+*.js.map
+.idea
+node_modules
+tmp
+dist
+reports
+src/app/app-complet.js
+coverage
+couverture
+.jenkins*
+.sonar
+/npm-debug.log
+.nyc_output
+.tmp
+target
