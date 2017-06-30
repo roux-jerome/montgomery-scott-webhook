@@ -17,19 +17,20 @@
     "morgan": "1.8.1",
     "helmet": "3.6.1"
   },
-    "devDependencies": {
-        "istanbul": "0.4.5",
-        "istanbul-instrumenter-loader": "2.0.0",
-        "npm-incubateur-composant": "0.1.6",
-        "npm-incubateur-docker": "0.2.19",
-        "rimraf": "2.6.1"
-    },
+  "devDependencies": {
+    "chai": "4.0.2",
+    "chai-http": "3.0.0",
+    "mocha": "3.4.2",
+    "npm-incubateur-composant": "0.1.6",
+    "npm-incubateur-docker": "0.2.19",
+    "rimraf": "2.6.1"
+  },
   "scripts": {
     "nettoie": "rimraf coverage dist .tmp .nyc_output reports",
     "nettoie-tout": "npm cache clean && npm run nettoie && rimraf node_modules",
     "qualimetrie-couverture": "istanbul check-coverage coverage/coverage-final.json --statements 85 --lines 85 --branches 85 --functions 75",
     "construit": "echo rien à faire",
-    "test": "echo bientot",
+    "test": "mocha",
     "produit": "npm install && npm run nettoie && npm run test && npm run construit",
     "start": "node ./bin/www",
     "docker-cree-image": "docker build . -t $npm_package_groupe/$npm_package_name:$npm_package_version",
