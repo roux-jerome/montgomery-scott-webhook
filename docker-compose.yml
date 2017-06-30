@@ -2,5 +2,7 @@ version: '2'
 services:
   bot:
     image: 'incubateur-cdv/bot:0.0.1'
+    ports:
+      - 15000:3000
     labels:
       'io.rancher.scheduler.affinity:host_label': acces-internet=true
