@@ -1,42 +1,46 @@
 {
-    "groupe": "incubateur-cdv",
-    "name": "bot",
-    "version": "0.0.2",
-    "private": true,
-    "artifactory": {
-        "docker": {
-            "snapshot": "docker-snapshots.artefact-repo.pole-emploi.intra",
-            "release": "docker-private.artefact-repo.pole-emploi.intra"
-        }
-    },
-    "dependencies": {
-        "body-parser": "1.17.1",
-        "cookie-parser": "1.4.3",
-        "debug": "2.6.3",
-        "express": "4.15.2",
-        "morgan": "1.8.1",
-        "helmet": "3.6.1"
-    },
-    "devDependencies": {
-        "chai": "4.0.2",
-        "chai-http": "3.0.0",
-        "mocha": "3.4.2",
-        "npm-incubateur-composant": "0.1.6",
-        "npm-incubateur-docker": "0.2.19",
-        "rimraf": "2.6.1"
-    },
-    "scripts": {
-        "nettoie": "rimraf coverage dist .tmp .nyc_output reports",
-        "nettoie-tout": "npm cache clean && npm run nettoie && rimraf node_modules",
-        "qualimetrie-couverture": "istanbul check-coverage coverage/coverage-final.json --statements 85 --lines 85 --branches 85 --functions 75",
-        "construit": "echo rien à faire",
-        "test": "mocha",
-        "produit": "npm install && npm run nettoie && npm run test && npm run construit",
-        "start": "NODE_ENV=production node ./bin/www",
-        "lance-dev": "node ./bin/www",
-        "docker-cree-image": "docker build . -t $npm_package_groupe/$npm_package_name:$npm_package_version",
-        "docker-pousse-image": "docker tag $npm_package_groupe/$npm_package_name:$npm_package_version $npm_package_artifactory_docker_snapshot/$npm_package_groupe/$npm_package_name:$npm_package_version && docker push $npm_package_artifactory_docker_snapshot/$npm_package_groupe/$npm_package_name:$npm_package_version",
-        "docker-promeut-en-latest": "docker tag $npm_package_artifactory_docker_snapshot/$npm_package_groupe/$npm_package_name:$npm_package_version $npm_package_artifactory_docker_snapshot/$npm_package_groupe/$npm_package_name:latest && docker push $npm_package_artifactory_docker_snapshot/$npm_package_groupe/$npm_package_name:latest",
-        "passe-a-la-version-suivante": "npm install && node scripts/composant-passe-version-suivante.js"
+  "groupe": "incubateur-cdv",
+  "name": "bot",
+  "version": "0.0.2",
+  "private": true,
+  "artifactory": {
+    "docker": {
+      "snapshot": "docker-snapshots.artefact-repo.pole-emploi.intra",
+      "release": "docker-private.artefact-repo.pole-emploi.intra"
     }
+  },
+  "dependencies": {
+    "body-parser": "1.17.1",
+    "cookie-parser": "1.4.3",
+    "debug": "2.6.3",
+    "express": "4.15.2",
+    "morgan": "1.8.1",
+    "helmet": "3.6.1"
+  },
+  "devDependencies": {
+    "babel-cli": "6.24.1",
+    "babel-preset-es2015": "6.24.1",
+    "babel-register": "6.23.0",
+    "chai": "4.0.2",
+    "chai-http": "3.0.0",
+    "mocha": "3.4.2",
+    "nodemon": "1.11.0",
+    "npm-incubateur-composant": "0.1.6",
+    "npm-incubateur-docker": "0.2.19",
+    "rimraf": "2.6.1"
+  },
+  "scripts": {
+    "nettoie": "rimraf coverage dist .tmp .nyc_output reports",
+    "nettoie-tout": "npm cache clean && npm run nettoie && rimraf node_modules",
+    "qualimetrie-couverture": "istanbul check-coverage coverage/coverage-final.json --statements 85 --lines 85 --branches 85 --functions 75",
+    "construit": "babel lib -d dist",
+    "test": "mocha",
+    "produit": "npm install && npm run nettoie && npm run test && npm run construit",
+    "start": "NODE_ENV=production node ./dist/index.js",
+    "lance-dev": "nodemon lib/index.js --exec babel-node --presets es2015",
+    "docker-cree-image": "docker build . -t $npm_package_groupe/$npm_package_name:$npm_package_version",
+    "docker-pousse-image": "docker tag $npm_package_groupe/$npm_package_name:$npm_package_version $npm_package_artifactory_docker_snapshot/$npm_package_groupe/$npm_package_name:$npm_package_version && docker push $npm_package_artifactory_docker_snapshot/$npm_package_groupe/$npm_package_name:$npm_package_version",
+    "docker-promeut-en-latest": "docker tag $npm_package_artifactory_docker_snapshot/$npm_package_groupe/$npm_package_name:$npm_package_version $npm_package_artifactory_docker_snapshot/$npm_package_groupe/$npm_package_name:latest && docker push $npm_package_artifactory_docker_snapshot/$npm_package_groupe/$npm_package_name:latest",
+    "passe-a-la-version-suivante": "npm install && node scripts/composant-passe-version-suivante.js"
+  }
 }
