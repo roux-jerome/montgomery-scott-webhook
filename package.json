@@ -1,10 +1,14 @@
 {
+  "groupe": "incubateur-cdv",
   "name": "bot",
   "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
+    "private": true,
+    "artifactory": {
+        "docker": {
+            "snapshot": "docker-snapshots.artefact-repo.pole-emploi.intra",
+            "release": "docker-private.artefact-repo.pole-emploi.intra"
+        }
+    },
   "dependencies": {
     "body-parser": "1.17.1",
     "cookie-parser": "1.4.3",
@@ -13,6 +17,21 @@
     "morgan": "1.8.1",
     "helmet": "3.6.1"
   },
-  "devDependencies": {
+    "devDependencies": {
+        "istanbul": "0.4.5",
+        "istanbul-instrumenter-loader": "2.0.0",
+        "npm-incubateur-composant": "0.1.6",
+        "npm-incubateur-docker": "0.2.19",
+        "rimraf": "2.6.1"
+    },
+  "scripts": {
+    "nettoie": "rimraf coverage dist .tmp .nyc_output reports",
+    "nettoie-tout": "npm cache clean && npm run nettoie && rimraf node_modules",
+    "qualimetrie-couverture": "istanbul check-coverage coverage/coverage-final.json --statements 85 --lines 85 --branches 85 --functions 75",
+    "start": "node ./bin/www",
+    "docker-cree-image": "docker build . -t $npm_package_groupe/$npm_package_name:$npm_package_version",
+    "docker-pousse-image": "docker tag $npm_package_groupe/$npm_package_name:$npm_package_version $npm_package_artifactory_docker_snapshot/$npm_package_groupe/$npm_package_name:$npm_package_version && docker push $npm_package_artifactory_docker_snapshot/$npm_package_groupe/$npm_package_name:$npm_package_version",
+    "docker-promeut-en-latest": "docker tag $npm_package_artifactory_docker_snapshot/$npm_package_groupe/$npm_package_name:$npm_package_version $npm_package_artifactory_docker_snapshot/$npm_package_groupe/$npm_package_name:latest && docker push $npm_package_artifactory_docker_snapshot/$npm_package_groupe/$npm_package_name:latest",
+    "passe-a-la-version-suivante": "npm install && node scripts/composant-passe-version-suivante.js"
   }
 }
