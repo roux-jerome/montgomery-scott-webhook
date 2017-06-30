@@ -1,0 +1,18 @@
+{
+  "name": "bot",
+  "version": "0.0.1",
+  "description": "API pour bot",
+  "main": "index.js",
+  "dependencies": {
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@git-scm.pole-emploi.intra:2222/incubateur-cdv/bot.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
