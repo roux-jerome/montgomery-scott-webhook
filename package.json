@@ -1,18 +1,15 @@
 {
   "name": "bot",
   "version": "0.0.1",
-  "description": "API pour bot",
-  "main": "index.js",
-  "dependencies": {
-  },
-  "devDependencies": {},
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "ssh://git@git-scm.pole-emploi.intra:2222/incubateur-cdv/bot.git"
-  },
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "morgan": "~1.8.1"
+  }
 }
