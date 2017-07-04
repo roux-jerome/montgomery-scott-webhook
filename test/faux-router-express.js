@@ -2,9 +2,9 @@
 
 export default class FauxRouterExpress {
 
-    post(chemin, handlerSource) {
+    post(chemin, routerInterne) {
         this.chemin = chemin;
-        this.handlerSource = handlerSource;
+        this.routerInterne = routerInterne;
     }
 
 
