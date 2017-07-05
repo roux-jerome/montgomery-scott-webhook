@@ -22,9 +22,9 @@ describe('CallbackDemandeDeMep', () => {
                     'attachments': [
                         {
                             'title': 'Mettre en production le compagnon de voyage',
-                            'text': 'Choisissez la version',
-                            'fallback': 'Impossible de déployer la version',
-                            'callback_id': 'cdv.liste-version-mep',
+                            'text': 'Choisissez une version parmis les 20 dernières',
+                            'fallback': 'Impossible d\'afficher la liste des versions',
+                            'callback_id': 'cdv.callback-dde-mep',
                             'color': '#3AA3E3',
                             'attachment_type': 'default',
                             'actions': [
@@ -34,8 +34,8 @@ describe('CallbackDemandeDeMep', () => {
                                     'type': 'select',
                                     'data_source': 'external',
                                     'confirm': {
-                                        'title': 'Serein ?',
-                                        'text': 'Le déploiement en production du CDV va être lancé',
+                                        'title': 'Êtes vous sûr ?',
+                                        'text': 'Voulez-vous que je déploie en production le compagnon de voyage ?',
                                         'ok_text': 'Oui',
                                         'dismiss_text': 'Non'
                                     }
