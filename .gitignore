@@ -13,3 +13,4 @@ couverture
 .nyc_output
 .tmp
 target
+package-lock.json
