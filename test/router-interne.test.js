@@ -24,7 +24,7 @@ describe('RouterInterne', () => {
             routerInterne = new RouterInterne(['niveau1', 'niveau2'], null, callbackDErreur);
         });
 
-        it('doit ajouter un élément à l\initialisation de la route', () => {
+        it('doit ajouter un élément à l\'initialisation de la route', () => {
 
             let resultatRetourne = routerInterne.initialiseLaRoute();
 

@@ -24,4 +24,4 @@ describe('EntrepotDeSousRouterInterne', () => {
         expect(handler).to.be.instanceOf(FauxSousRouterInterne)
     });
 
-})
+});

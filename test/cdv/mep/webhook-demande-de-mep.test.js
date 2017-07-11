@@ -1,4 +1,4 @@
-import CallbackDemandeDeMep from '../../../lib/cdv/mep/webhook-demande-de-mep';
+import WebhookDemandeDeMep from '../../../lib/cdv/mep/webhook-demande-de-mep';
 import FausseReponseExpress from '../../fausse-reponse-express';
 
 import * as chai from 'chai';
@@ -10,7 +10,7 @@ describe('CallbackDemandeDeMep', () => {
 
     it('doit retourner la question demandant la version à mettre en production', () => {
 
-        let cdvDemandeDeMEPSousRouterInterne = new CallbackDemandeDeMep();
+        let cdvDemandeDeMEPSousRouterInterne = new WebhookDemandeDeMep();
         let fausseReponseExpress = new FausseReponseExpress();
 
         cdvDemandeDeMEPSousRouterInterne.gere({}, fausseReponseExpress);
