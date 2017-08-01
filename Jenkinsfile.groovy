@@ -26,16 +26,19 @@ node("node && rancher && docker") {
         sh "docker logout docker-snapshots.artefact-repo.pole-emploi.intra"
     }
 
+    stage("Mise à jour des versions des composants") {
+        sh "npm run mets-a-jour-les-versions-de-composants -- --faitLeCommitSiNecessaire"
+    }
+
+    stage("Déploiement container docker") {
+        sh "rancher --config /home/ypicpe/.rancher/usine-api.json --wait up -d --stack bot --upgrade --confirm-upgrade --pull"
+    }
+
 
     stage("passe à la version suivante") {
         sh "npm run passe-a-la-version-suivante"
         sh "git push origin master"
         sh "git push --tags"
-    }
-
-
-    stage("Déploiement container docker") {
-        sh "rancher --config /home/ypicpe/.rancher/usine-api.json --wait up -d --stack bot --upgrade --confirm-upgrade --pull"
     }
 
 }
